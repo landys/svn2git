@@ -316,8 +316,10 @@ module Svn2Git
         end
 
         next if branch == 'trunk' || @local.include?(branch)
-        run_command("git branch --track \"#{branch}\" \"remotes/svn/#{branch}\"")
-        run_command("git checkout \"#{branch}\"")
+        #run_command("git branch --track \"#{branch}\" \"remotes/svn/#{branch}\"")
+        #run_command("git checkout \"#{branch}\"")
+        #http://stackoverflow.com/questions/19712735/git-svn-cannot-setup-tracking-information-starting-point-is-not-a-branch
+        run_command("git checkout -b \"#{branch}\" \"remotes/svn/#{branch}\"")
       end
     end
 
